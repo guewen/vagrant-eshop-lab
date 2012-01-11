@@ -27,7 +27,7 @@ class magento {
   exec { "untar-magento":
     cwd => $document_root,
     command => "/bin/tar xvzf /tmp/magento-1.6.0.0.tar.gz",
-    require => [Exec["download-magento"], Class["zendserverce"]]
+    require => [Exec["download-magento"], Class["php"]]
   }
 
   exec { "setting-permissions":
