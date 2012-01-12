@@ -1,10 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-project_name = "Magento"
-project = "magento"
-
 Vagrant::Config.run do |config|
+
+  project_name = "Magento"
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -30,7 +30,7 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  config.vm.share_folder("v-root", "/vagrant", ".")
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -38,9 +38,9 @@ Vagrant::Config.run do |config|
   # the file base.pp in the manifests_path directory.
   config.vm.provision :puppet do |puppet|
     # for debug, uncomment
-    # puppet.options = "--verbose --debug"
+    puppet.options = "--verbose --debug"
     # for verbose, uncomment
-    # puppet.options = "--verbose"
+    puppet.options = "--verbose"
     puppet.module_path = "puppet/modules"
     puppet.manifests_path = "puppet/manifests"
   end

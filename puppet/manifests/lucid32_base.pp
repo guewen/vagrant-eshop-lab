@@ -1,19 +1,26 @@
 class lucid32_base {
   
   $host = "magento.dev"
-  #$project = "magento"
   $db_root_password = "root"
-  #$user = "admin"
-  #$user1password = "admin"
-  #$user1mail = "admin@mailinator.com"
-  $source_directory = "/vagrant"
+
+  $source_directory = "/vagrant/project"
   $site_url = "http://${host}/"
 
-  # setup the document root
-  $root_document = "${source_directory}/magento"
+  $eshop_admin_login = "admin"
+  $eshop_admin_password = "admin"
+  $eshop_admin_email = "email@email.com"
 
-  package { "wget":
-    ensure => "present",
+  # setup the document root
+  $root_document = "${source_directory}/web"
+
+  package { "wget": ensure => "present", }
+
+  # puppet complains about a missing puppet group so create it
+  group { 'puppet': ensure => 'present' }
+
+  # packages are not update to date out of the box
+  exec { 'apt-get update':
+    command => '/usr/bin/apt-get update'
   }
 
   # setup hosts for $host and www.$host having www.$host and $host map to the same site
@@ -24,10 +31,10 @@ class lucid32_base {
   }
 
   include mysql
-  include php
-  include svn
-  include config
-  include magento
+#  include php
+#  include svn
+#  include config
+#  include magento
 
 
 }
