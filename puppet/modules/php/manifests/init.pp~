@@ -59,20 +59,6 @@ class php
 
   package
   {
-    'php5-pdo':
-      ensure => present,
-      require => Package['php5']
-  }
-  
-  package
-  {
-    'php5-pecl':
-      ensure => present,
-      require => Package['php5']
-  }
-
-  package
-  {
     'phpmyadmin':
       ensure => present,
       require => Package['php5']

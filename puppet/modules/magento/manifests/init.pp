@@ -36,33 +36,29 @@ class magento {
     require => Exec["untar-magento"],
   }
   
-   host { 'magento.localhost':
-           ip => '127.0.0.1',
-   }
-
   exec { "install-magento":
-    cwd => "$document_root/magento",
-    creates => "$document_root/magento/app/etc/local.xml",
-    command => '/usr/local/zend/bin/php-cli -f install.php -- \
+    cwd => "$root_document/",
+    creates => "$root_document/app/etc/local.xml",
+    command => '/usr/bin/php -f install.php -- \
     --license_agreement_accepted "yes" \
     --locale "en_US" \
     --timezone "America/Los_Angeles" \
-    --default_currency "USD" \
+    --default_currency "EUR" \
     --db_host "localhost" \
     --db_name "magentodb" \
     --db_user "magento" \
     --db_pass "secret" \
-    --url "http://magento.localhost:8080/magento" \
+    --url "${lucid32_base::site_url}" \
     --use_rewrites "yes" \
     --use_secure "no" \
-    --secure_base_url "http://magento.localhost:8080/magento" \
+    --secure_base_url "${lucid32_base::site_url}" \
     --use_secure_admin "no" \
     --skip_url_validation "yes" \
     --admin_firstname "Store" \
     --admin_lastname "Owner" \
-    --admin_email "email@address.com" \
-    --admin_username "admin" \
-    --admin_password "secret123"',
+    --admin_email "${lucid32_base::eshop_admin_email}" \
+    --admin_username "${lucid32_base::eshop_admin_login}" \
+    --admin_password "${lucid32_base::eshop_admin_password}"',
     require => [Exec["setting-permissions"],Exec["create-magentodb-db"]],
   }
   
