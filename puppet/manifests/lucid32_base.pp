@@ -31,9 +31,9 @@ class lucid32_base {
   }
 
   include mysql
-#  include php
-#  include svn
-#  include config
+  include php
+  include svn
+  include config
 #  include magento
 
 

@@ -45,31 +45,24 @@ class php
   
   package
   {
-    'php5-curl':
-      ensure => present,
-      require => Package['php5']
-  }
-
-  package
-  {
     'php5-gd':
       ensure => present,
       require => Package['php5']
   }
 
-  package
-  {
-    'php5-pdo':
-      ensure => present,
-      require => Package['php5']
-  }
+#  package
+#  {
+#    'php5-pdo':
+#      ensure => present,
+#      require => Package['php5']
+#  }
   
-  package
-  {
-    'php5-pecl':
-      ensure => present,
-      require => Package['php5']
-  }
+#  package
+#  {
+#    'php5-pecl':
+#      ensure => present,
+#      require => Package['php5']
+#  }
 
   package
   {
